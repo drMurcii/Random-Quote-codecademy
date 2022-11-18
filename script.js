@@ -1304,22 +1304,6 @@ const messages = [
         ]
     },
     {
-        "quote": "Don’t be so humble – you are not that great.",
-        "author": "Golda Meir",
-        "profession": "Former Prime Minister of Israel",
-        "topics": [
-            "Humor"
-        ]
-    },
-    {
-        "quote": "Whether women are better than men I cannot say - but I can say they are certainly no worse.",
-        "author": "Golda Meir",
-        "profession": "Former Prime Minister of Israel",
-        "topics": [
-            "Humor"
-        ]
-    },
-    {
         "quote": "The best way to teach your kids about taxes is by eating 30 percent of their ice cream.",
         "author": "Bill Murray",
         "profession": "American actor",
@@ -1549,11 +1533,24 @@ const messages = [
     }
 ];
 
-//This is a function to call a random quote from the quotes array and log it to the console interpolated.
-function getRandomMessage(arr) {
+// This is a function to call a random quote from the quotes array and return it interpolated.
+const getRandomMessage = arr => {
     let randomMessage = arr[Math.floor(Math.random() * (arr.length - 1))];
-    console.log(`${randomMessage.quote}\nBy: ${randomMessage.author} / ${randomMessage.profession}.\nTags: ${randomMessage.topics.join(', ')}.`);
+    return `"${randomMessage.quote}"<br>By: ${randomMessage.author} / ${randomMessage.profession}.<br>Tags: ${randomMessage.topics.join(', ')}.`;
 };
 
-//Function call.
-getRandomMessage(messages);
+// Function call logged to the console.
+//console.log(getRandomMessage(messages));
+
+
+// Assigning variables to dom elements:
+const text = document.getElementById('text');
+const button = document.getElementById('fire');
+
+// Adding functionality to the button:
+
+const dispalyQuote = () => {
+    text.innerHTML = getRandomMessage(messages);
+    button.innerHTML = 'Hit Me Again!';
+}
+button.addEventListener('click', dispalyQuote);
